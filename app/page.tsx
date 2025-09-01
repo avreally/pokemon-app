@@ -1,95 +1,71 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { PokemonTransformed } from "./types/PokemonTransformed";
+import { Pokemon } from "./types/Pokemon";
+import { Search } from "../components/Search/Search";
+import { Featured } from "../components/Featured/Featured";
 
-export default function Home() {
+export default async function Home() {
+  const data = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=2000");
+  const pokemons = await data.json();
+
+  const maxIndex = pokemons.results.length - 1;
+
+  function getRandomIndex() {
+    return Math.floor(Math.random() * maxIndex);
+  }
+
+  const featured = new Set<number>();
+  while (featured.size < 4) {
+    featured.add(getRandomIndex());
+  }
+  const featuredArray: number[] = Array.from(featured);
+
+  const selectedPokemons = featuredArray.map(
+    (element: number) => pokemons.results[element]
+  );
+
+  async function getPokemonByName(name: string): Promise<Pokemon> {
+    const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+
+    return await data.json();
+  }
+
+  const featuredPokemons = await Promise.all(
+    selectedPokemons.map((pokemon) => getPokemonByName(pokemon.name))
+  );
+
+  function transformPokemon() {
+    return featuredPokemons.map(({ id, name, types, stats, sprites }) => {
+      const result: PokemonTransformed = {
+        id,
+        name,
+        types,
+        stats,
+        sprites,
+      };
+
+      return result;
+    });
+  }
+
+  const transformedPokemons = transformPokemon();
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <main>
+      <section className={styles.section}>
+        <h1 className={styles.heading}>Gotta catch &apos;em all!</h1>
+        <p className={styles.text}>
+          Discover, search and explore the amazing world of Pokémon. Find
+          <br /> your favourite and learn about their stats.
+        </p>
+        <button className={styles.btnPrimary}>
+          <Image src="/Dice.svg" width={25} height={25} alt="Dice" />
+          Random Pokémon
+        </button>
+      </section>
+      <Search />
+      <Featured pokemons={transformedPokemons} />
+    </main>
   );
 }
