@@ -1,0 +1,56 @@
+.section {
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 3px 4px 0 #7371ef;
+}
+
+.form:has(.input:focus, .input:focus-visible) {
+  outline: 2px solid #7371ef;
+}
+
+.hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.input {
+  min-width: 20rem;
+  padding: 0.4rem;
+  border: none;
+}
+
+.input:focus,
+.input:focus-visible {
+  outline: none;
+}
+
+.button {
+  display: flex;
+  padding: 0.4rem 0.8rem;
+  background-color: #7371ef;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
+}
+
+.button:hover {
+  background-color: #4d4bc1;
+}
