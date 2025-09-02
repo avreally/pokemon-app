@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Jaldi, Jersey_10 } from "next/font/google";
 import "./globals.css";
+import Header from "../components/Header/Header";
+import { Search } from "../components/Search/Search";
 
 const jaldi = Jaldi({
   subsets: ["latin"],
@@ -28,6 +30,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jaldi.variable} ${jersey.variable} antialiased`}>
         <header className="content-grid"></header>
+        <Header />
+        <Search />
         {children}
       </body>
     </html>

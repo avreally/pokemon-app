@@ -1,0 +1,28 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3.5rem;
+  background-image: linear-gradient(-10deg, #c97fe4, #aecdf6);
+  background-size: cover;
+}
+
+.heading {
+  text-align: center;
+  margin-top: 3.5rem;
+  font-size: 6rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #8a0194, #193cb8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.text {
+  text-align: center;
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
