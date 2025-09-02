@@ -9,10 +9,8 @@ type CardProps = {
 export function Card({ pokemon }: CardProps) {
   const displayedStats = ["hp", "attack", "defense"];
 
-  const selectedStats = pokemon.stats.map((stat) => {
-    if (displayedStats.includes(stat.stat.name)) {
-      return stat;
-    }
+  const selectedStats = pokemon.stats.filter((stat) => {
+    return displayedStats.includes(stat.stat.name);
   });
 
   return (
@@ -22,7 +20,7 @@ export function Card({ pokemon }: CardProps) {
         src={pokemon.sprites.front_shiny ?? ""}
         width={100}
         height={100}
-        alt="globe"
+        alt="pokemon"
       />
       <div className={styles.id}>#{pokemon.id}</div>
       <h3 className={styles.name}>{pokemon.name}</h3>
