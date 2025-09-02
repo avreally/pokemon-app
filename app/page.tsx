@@ -1,9 +1,8 @@
-import Image from "next/image";
 import styles from "./page.module.css";
-import { PokemonTransformed } from "./types/PokemonTransformed";
-import { Pokemon } from "./types/Pokemon";
 import { Search } from "../components/Search/Search";
 import { Featured } from "../components/Featured/Featured";
+import { RandomPokemon } from "../components/RandomPokemon/RandomPokemon";
+import { getPokemonByName, transformPokemon } from "./utils/utils";
 
 export default async function Home() {
   const data = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=2000");
@@ -25,31 +24,13 @@ export default async function Home() {
     (element: number) => pokemons.results[element]
   );
 
-  async function getPokemonByName(name: string): Promise<Pokemon> {
-    const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-
-    return await data.json();
-  }
-
   const featuredPokemons = await Promise.all(
     selectedPokemons.map((pokemon) => getPokemonByName(pokemon.name))
   );
 
-  function transformPokemon() {
-    return featuredPokemons.map(({ id, name, types, stats, sprites }) => {
-      const result: PokemonTransformed = {
-        id,
-        name,
-        types,
-        stats,
-        sprites,
-      };
-
-      return result;
-    });
-  }
-
-  const transformedPokemons = transformPokemon();
+  const transformedPokemons = featuredPokemons.map((pokemon) => {
+    return transformPokemon(pokemon);
+  });
 
   return (
     <main>
@@ -59,10 +40,7 @@ export default async function Home() {
           Discover, search and explore the amazing world of Pokémon. Find
           <br /> your favourite and learn about their stats.
         </p>
-        <button className={styles.btnPrimary}>
-          <Image src="/Dice.svg" width={25} height={25} alt="Dice" />
-          Random Pokémon
-        </button>
+        <RandomPokemon total={pokemons.results.length} />
       </section>
       <Search />
       <Featured pokemons={transformedPokemons} />
