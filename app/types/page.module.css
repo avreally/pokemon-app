@@ -1,0 +1,157 @@
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 3rem;
+  justify-content: center;
+}
+
+.type {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5rem;
+  padding: 0.25rem 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.normal {
+  background-color: #a8a77a;
+}
+.normal:hover {
+  background-color: #8f8f66;
+}
+
+.fire {
+  background-color: #ee8130;
+}
+.fire:hover {
+  background-color: #c96a27;
+}
+
+.water {
+  background-color: #6390f0;
+}
+.water:hover {
+  background-color: #5073c0;
+}
+
+.grass {
+  background-color: #7ac74c;
+}
+.grass:hover {
+  background-color: #629e3d;
+}
+
+.electric {
+  background-color: #f7d02c;
+}
+.electric:hover {
+  background-color: #c6a723;
+}
+
+.ice {
+  background-color: #96d9d6;
+}
+.ice:hover {
+  background-color: #78aeac;
+}
+
+.fighting {
+  background-color: #c22e28;
+}
+.fighting:hover {
+  background-color: #9b2420;
+}
+
+.poison {
+  background-color: #a33ea1;
+}
+.poison:hover {
+  background-color: #823281;
+}
+
+.ground {
+  background-color: #e2bf65;
+}
+.ground:hover {
+  background-color: #b59a51;
+}
+
+.flying {
+  background-color: #a98ff3;
+}
+.flying:hover {
+  background-color: #8772c2;
+}
+
+.psychic {
+  background-color: #f95587;
+}
+.psychic:hover {
+  background-color: #c7446c;
+}
+
+.bug {
+  background-color: #a6b91a;
+}
+.bug:hover {
+  background-color: #859415;
+}
+
+.rock {
+  background-color: #b6a136;
+}
+.rock:hover {
+  background-color: #92812b;
+}
+
+.ghost {
+  background-color: #735797;
+}
+.ghost:hover {
+  background-color: #5c4679;
+}
+
+.dragon {
+  background-color: #6f35fc;
+}
+.dragon:hover {
+  background-color: #592ac9;
+}
+
+.dark {
+  background-color: #705746;
+}
+.dark:hover {
+  background-color: #5a4638;
+}
+
+.steel {
+  background-color: #b7b7ce;
+}
+.steel:hover {
+  background-color: #9292a5;
+}
+
+.fairy {
+  background-color: #d685ad;
+}
+.fairy:hover {
+  background-color: #ab6a8a;
+}
+
+.stellar {
+  background-color: #40b5a5;
+}
+.stellar:hover {
+  background-color: #338f83;
+}
+
+.unknown {
+  background-color: #68a090;
+}
+.unknown:hover {
+  background-color: #538073;
+}
