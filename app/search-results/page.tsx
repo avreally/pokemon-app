@@ -4,7 +4,7 @@ import {
   getPokemonByName,
   getPokemons,
   transformPokemon,
-} from "../utils/utils";
+} from "../../lib/utils";
 
 type SearchResultsProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

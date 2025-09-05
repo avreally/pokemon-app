@@ -1,5 +1,5 @@
 import { Featured } from "../components/Featured/Featured";
-import { getPokemonByName, getPokemons, transformPokemon } from "./utils/utils";
+import { getPokemonByName, getPokemons, transformPokemon } from "../lib/utils";
 
 export default async function Home() {
   const pokemons = await getPokemons();

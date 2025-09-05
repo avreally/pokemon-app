@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./Card.module.css";
-import { PokemonTransformed } from "../../app/types/PokemonTransformed";
+import { PokemonTransformed } from "../../lib/types";
 
 type CardProps = {
   pokemon: PokemonTransformed;
@@ -26,7 +26,11 @@ export function Card({ pokemon }: CardProps) {
       <h3 className={styles.name}>{pokemon.name}</h3>
       <ul className={styles.types}>
         {pokemon.types.map((type, index) => {
-          return <li key={index}>{type.type.name}</li>;
+          return (
+            <li key={index} className={styles[type.type.name]}>
+              {type.type.name}
+            </li>
+          );
         })}
       </ul>
       <ul className={styles.stats}>

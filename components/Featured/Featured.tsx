@@ -1,4 +1,4 @@
-import { PokemonTransformed } from "../../app/types/PokemonTransformed";
+import { PokemonTransformed } from "../../lib/types";
 import { Card } from "../Card/Card";
 import styles from "./Featured.module.css";
 
